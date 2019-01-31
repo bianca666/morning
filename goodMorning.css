@@ -1783,7 +1783,6 @@ brush	animation-timing-function: linear;
 
 @media screen and (max-width:750px){
 	#leo{
-		width: 392px;
-		height: 478px;
+		transform: scale(0.9);
 	}
 }
