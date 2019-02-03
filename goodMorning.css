@@ -1440,16 +1440,8 @@ html, body{
 
 #innerMouth.ebX{
 	animation: stoMouth 0.4s 1s steps(7),    /* smile to open */
-				ebXInnerMouth 0.4s 1.4s 2,
-				etoMouth 0.2s 2.2s,    /* eat to open */
-				ebXInnerMouth 0.4s 2.4s 2,
-				etoMouth 0.2s 3.2s,
-				ebXInnerMouth 0.4s 3.4s 2;
-			
-				/* openMouth 0.4s 2s steps(7),
-				ebMouth 0.6s 2.4s,
-				openMouth 0.4s 3s steps(7),
-				ebMouth 0.6s 3.4s; */
+				ebXInnerMouth 1s 1.4s 3;
+							   /* eat to open */
 }
 
 @keyframes stoMouth{
@@ -1470,14 +1462,28 @@ html, body{
 		animation-timing-function: cubic-bezier(0, 0, .65, 1.66); 
 		transform: translateX( 15px);
 	}
-	50%{
+	20%{
 		background-position: -416px -26px;
 		animation-timing-function: cubic-bezier(0, 0, .65, 1.66); 
 		transform: translateX( 5px);
 	}
-	to{
+	40%{
 		background-position: -416px -26px;
 		transform: translateX( 15px);
+		animation-timing-function: cubic-bezier(0, 0, .65, 1.66); 
+	}
+	60%{
+		background-position: -416px -26px;
+		animation-timing-function: cubic-bezier(0, 0, .65, 1.66); 
+		transform: translateX( 5px);
+	}
+	80%{
+		background-position: -416px -26px;
+		transform: translateX( 15px); 
+	}
+	81%, 100%{
+		background-position: -364px -26px;
+		transform: translateX( 0px);
 	}
 }
 
