@@ -1223,7 +1223,7 @@
 			setTimeout( () => {
 				//var mouth = this.body['mouth'];
 
-				mouth.style.backgroundPosition = '-468px 0';
+				//mouth.style.backgroundPosition = '-468px 0';
 	
 			}, 4968);
 			setTimeout(() => {
