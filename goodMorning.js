@@ -805,6 +805,7 @@
 
 
 						currDragged.item.style.transform = '';
+						currDragged.item.style.opacity = 0;
 						currDragged.offsetX = 0;
 						currDragged.offsetY = 0;
 						currDragged.startPoint = null;
@@ -1226,10 +1227,7 @@
 				//mouth.style.backgroundPosition = '-468px 0';
 	
 			}, 4968);
-			setTimeout(() => {
-				lHand.style.backgroundPosition = '0px 0px';
-				
-			}, 7128);
+			
 
 			var parts = [this.body.limbs.get('lArm'), this.body.limbs.get('lForeArm'), this.body.limbs.get('lHand'), this.body['mouth'], brush];
 
