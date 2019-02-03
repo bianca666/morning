@@ -9,7 +9,7 @@
 		this.x = x;
 		this.y = y;
 
-		this.div, this.body, this.sink, this.state, this.opeArr/* this.dropAreas = null*/;
+		this.div, this.body, this.sink, this.state, this.opeArr, this.dropAreas = null;
 		this.currDragged = {
 			item: null,
 			draggedImage: null,
@@ -206,7 +206,7 @@
 			reb.classList.add("ebrNormal");
 			mouth.classList.add("mouthNormal");
 
-			reye.style.transform = "rotateY(180deg)";
+			//reye.style.transform = "rotateY(180deg)";
 			leye.style.animationDirection = 'alternate';
 			reye.style.animationDirection = 'alternate';
 			leye.classList.add("stw");
@@ -216,7 +216,7 @@
 				this.body['lEye'].classList.remove("stw");
 				this.body['lEye'].style.backgroundPosition = '-340px 0';
 				this.body['rEye'].classList.remove("stw");
-				this.body['rEye'].style.backgroundPosition = '-340px 0';
+				this.body['rEye'].style.backgroundPosition = '-714px 0';
 			}, 5400);
 
 			leb.addEventListener("animationend", function(){
@@ -330,8 +330,8 @@
 			}
 
 			this.body["lEye"].style.backgroundPosition = "-340px 0px";
-			this.body['rEye'].style.backgroundPosition = "-340px 0px";
-			this.body['rEye'].style.transform = "rotateY(180deg)";
+			this.body['rEye'].style.backgroundPosition = "-714px 0px";
+			//this.body['rEye'].style.transform = "rotateY(180deg)";
 			
 			setTimeout(() => {
 				this.body["head"].style.opacity = "0";
@@ -363,23 +363,31 @@
 			setTimeout(() => {
 				this.body["lEye"].classList.add("closeEyes");
 				this.body["rEye"].classList.add("closeEyes");
-				[this.body["lEye"], this.body["rEye"]].forEach(function(ele){
-					ele.addEventListener("animationend", function(){
-						this.style.backgroundPosition = '0 0';
-						this.classList.remove("closeEyes");
-					})
+				
+				this.body["lEye"].addEventListener("animationend", function(){
+					this.style.backgroundPosition = '0 0';
+					this.classList.remove("closeEyes");
+				});
+				this.body["rEye"].addEventListener("animationend", function(){
+					this.style.backgroundPosition = '-374px 0';
+					this.classList.remove("closeEyes");
 				})
 			}, 6660);
 
 			setTimeout(() => {
 				this.body["lEye"].classList.add("openEyes");
 				this.body["rEye"].classList.add("openEyes");
-				[this.body["lEye"], this.body["rEye"]].forEach(function(ele){
-					ele.addEventListener("animationend", function(){
-						this.style.backgroundPosition = '-340px 0';
-						this.classList.remove("openEyes");
-					})
+				
+				this.body["lEye"].addEventListener("animationend", function(){
+					this.style.backgroundPosition = '-340px 0';
+					this.classList.remove("openEyes");
 				})
+
+				this.body["rEye"].addEventListener("animationend", function(){
+					this.style.backgroundPosition = '-714px 0';
+					this.classList.remove("openEyes");
+				})
+			
 			}, 9180);
 
 			setTimeout(() => {		
@@ -668,7 +676,7 @@
 				
 				divDragged.style.backgroundImage = "url(imgs/ae/images/images/ope.png)";
 				divDragged.style.opacity = '0';
-				divDragged.style.top = -parseInt(divOpe.style.height) + 'px';
+				divDragged.style.top = '0px';
 				divDragged.setAttribute("id", value);
 
 				// container.appendChild(divDragged);
@@ -777,6 +785,7 @@
 					//console.log(window.currDragged);
 					
 					if(!this.opeArr.has(e.target.id)) return;
+					if(this.currDragged.inside) return;
 
 					currDragged.item = e.target;
 					currDragged.startPoint = getMousePoint(e)
@@ -788,6 +797,7 @@
 					}
 					document.ontouchend = (e) => {
 						e.preventDefault();
+						handleDragEnd(e, currDragged, this);
 						document.ontouchend = document.ontouchmove = null;
 						if(currDragged.inside){
 							this.showOpeAnim();
@@ -857,20 +867,22 @@
 			
 		
 			e.preventDefault();
-
-			currDragged.item.style.transform = '';
-			currDragged.draggedImage.style.transform = '';
-			currDragged.draggedImage.style.opacity = 0;
-			currDragged.draggedImage = null;
-			if(!currDragged.inside){
-				currDragged.item.style.opacity = 1;
+			if(!('ontouchstart' in window)) {
+				currDragged.item.style.transform = '';
+				currDragged.draggedImage.style.transform = '';
+				currDragged.draggedImage.style.opacity = 0;
+				currDragged.draggedImage = null;
+				if(!currDragged.inside){
+					currDragged.item.style.opacity = 1;
+					
+				}
 				
+				currDragged.offsetX = 0;
+				currDragged.offsetY = 0;
+				currDragged.startPoint = null;
+				currDragged.movePoint = null;
 			}
 			
-			currDragged.offsetX = 0;
-			currDragged.offsetY = 0;
-			currDragged.startPoint = null;
-			currDragged.movePoint = null;
 		};
 
 		function handleDrag(e, currDragged, dropAreas, thisRef){
@@ -1064,21 +1076,21 @@
 			switch(this.currDragged.item.id){
 					case "wfOpe":
 						this.washFace();
-						setTimeout(() => { this.currDragged.item.style.opacity = 1; this.currDragged.item = null;resDraggble(); this.currDragged.inside = false;this.resDraggble(); console.log('testWF');}, 9740);
+						setTimeout(() => { this.currDragged.item.style.opacity = 1; this.currDragged.item = null;this.resDraggble(); this.currDragged.inside = false;}, 9740);
 						break;
 					case "btOpe":
 						this.brushTeeth();
-						setTimeout(() => { this.currDragged.item.style.opacity = 1; this.currDragged.item = null; this.currDragged.inside = false; this.resDraggble(); console.log('testBT');},
+						setTimeout(() => { this.currDragged.item.style.opacity = 1; this.currDragged.item = null; this.currDragged.inside = false; this.resDraggble();},
 							8000);
 						break;
 					case "ebOpe":
 						this.eatBreakfast();
-						setTimeout(() => { this.currDragged.item.style.opacity = 1; this.currDragged.item = null; this.currDragged.inside = false; this.resDraggble(); console.log('testEB');},
+						setTimeout(() => { this.currDragged.item.style.opacity = 1; this.currDragged.item = null; this.currDragged.inside = false; this.resDraggble();},
 							6500);
 						break;
 					case "tcOpe":
 						this.getDressed();
-						setTimeout(() => { this.currDragged.item.style.opacity = 1; this.currDragged.item = null; this.currDragged.inside = false; this.resDraggble; console.log('testTC');},
+						setTimeout(() => { this.currDragged.item.style.opacity = 1; this.currDragged.item = null; this.currDragged.inside = false; this.resDraggble(); },
 							3000);
 						break;
 				}
