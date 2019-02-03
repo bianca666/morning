@@ -5,6 +5,8 @@ html, body{
 	background-color: #142940;
 	animation: changeBGC 0.5s /* 12.5s */ forwards;
 	margin: 0;
+	padding: 0;
+	position: relative;
 }
 
 #leo{
@@ -229,25 +231,38 @@ html, body{
 }
 
 #rEye{
-	/* transform: rotateY(180deg); */
+	background-position: -374px 0;
 	
 }
 
-.stw{	
+#lEye.stw{	
 	animation: blink 1.5s steps(10) 2,
 				blink 0.8s 3s steps(10) 3 forwards;
+}
+
+#rEye.stw{
+	animation: blinkR 1.5s steps(10) 2,
+				blinkR 0.8s 3s steps(10) 3 forwards;
 }
 
 .blink{
 	animation: blinkBN 0.25s steps(10) 2 forwards;
 }
 
-.closeEyes{
+#lEye.closeEyes{
 	animation: blinkBN 0.25s steps(10) forwards;
 }
 
-.openEyes{
+#rEye.closeEyes{
+	animation: blinkRBN 0.25s steps(10) forwards;
+}
+
+#lEye.openEyes{
 	animation: blink 0.25s steps(10) forwards;
+}
+
+#rEye.openEyes{
+	animation: blinkR 0.25s steps(10) forwards;
 }
 
 @keyframes blink{
@@ -256,9 +271,21 @@ html, body{
 	}
 }
 
+@keyframes blinkR{
+	to{
+		background-position: -714px 0;
+	}
+}
+
 @keyframes blinkBN{
 	to{
 		background-position: 0px 0;
+	}
+}
+
+@keyframes blinkRBN{
+	to{
+		background-position: -374px 0;
 	}
 }
 
@@ -1796,6 +1823,8 @@ brush	animation-timing-function: linear;
 @media screen and (max-width:750px){
 	#leo{
 		transform: /* translate(-50%, -50%) */ scale(0.9);
+		margin-top: -265.5px;
+		margin-left: -217.8px;
 	}
 }
 
@@ -1811,7 +1840,7 @@ brush	animation-timing-function: linear;
 		height: 70px;
 		top: 10px;
 		left: 50%;
-		margin-left: -140px;
+		margin-left: -155.5px;
 		flex-direction: row;
 		margin-top: 0;
 	}
