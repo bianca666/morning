@@ -1219,7 +1219,7 @@ html, body{
 #mouth.bt{
 	background-position: 0 0;
 	animation: btMouthBGClose 0.5s 1.728s steps(8) forwards,
-				btMouthBGOpen 0.4s 4.968s steps(6) forwards;
+				btMouthBGOpen 0.4s 4.968s steps(7) forwards;
 }
 
 @keyframes btMouthBGClose{
@@ -1229,6 +1229,9 @@ html, body{
 }
 
 @keyframes btMouthBGOpen{
+	from{
+		background-position: -416px 0;
+	}
 	to{
 		background-position: -774px 0;
 	}
