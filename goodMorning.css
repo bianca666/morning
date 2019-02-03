@@ -1488,9 +1488,7 @@ html, body{
 }
 
 #mouth.ebY{
-	animation: ebYMouth 0.4s 1.4s 2,
-				ebYMouth 0.4s 2.4s 2,
-				ebYMouth 0.4s 3.4s 2;
+	animation: ebYMouth 1s 1.4s 3;
 	animation-timing-function: linear;
 }
 
@@ -1498,12 +1496,22 @@ html, body{
 	0%{
 		transform: translateY(-13px);
 	}
-	50%{
+	20%{
 		transform: translateY(0px);
 	}
-	100%{
+	40%{
 		transform: translateY(-13px);
 	}
+	60%{
+		transform: translateY(0px);
+	}
+	80%{
+		transform: translateY(-13px);
+	}
+	81%, 100%{
+		transform: translateY(0px);
+	}
+
 }
 
 #lSleeve, #rSleeve, #torsoWithShirt, #lShoe, #rShoe{
@@ -1832,8 +1840,8 @@ brush	animation-timing-function: linear;
 @media screen and (max-width:750px){
 	#leo{
 		transform: /* translate(-50%, -50%) */ scale(0.9);
-		margin-top: -265.5px;
-		margin-left: -217.8px;
+		margin-top: -239px;
+		margin-left: -196px;
 	}
 }
 
@@ -1849,7 +1857,7 @@ brush	animation-timing-function: linear;
 		height: 70px;
 		top: 10px;
 		left: 50%;
-		margin-left: -155.5px;
+		margin-left: -140px;
 		flex-direction: row;
 		margin-top: 0;
 	}
